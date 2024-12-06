@@ -1,0 +1,80 @@
+<div class="container letra">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="pt-4 text-center">Contactanos para nuestros servicios</h1>
+            <div class="pt-4 text-center">
+                <h5 class="mb-3">Ve más de nuestros servicios en nuestras redes sociales</h5>
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="https://www.facebook.com/?locale=es_LA" target="_blank" class="text-decoration-none">
+                        <img src="assets/2021_Facebook_icon.svg.png" width="40" height="36" alt="Facebook">
+                    </a>
+                    <a href="https://www.instagram.com/" target="_blank" class="text-decoration-none">
+                        <img src="assets/Instagram_logo_2022.svg" width="40" height="36" alt="Instagram">
+                    </a>
+                    <a href="https://www.whatsapp.com/?lang=es_LA" target="_blank" class="text-decoration-none">
+                        <img src="assets/WhatsApp.svg.png" width="40" height="36" alt="WhatsApp">
+                    </a>
+                </div>
+            </div>
+            <div class="pt-4 pb-3 row justify-content-center">
+                <div class="col-md-6">
+                    <form [formGroup]="formularioForm" (ngSubmit)="enviarDatos()">
+                        <h1 class="text-center">Formulario de contacto</h1>
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label">Nombre</label>
+                            <input type="text" id="nombre" class="form-control" formControlName="nombre">
+                        </div>
+                        <div class="mb-3">
+                            <label for="apellido" class="form-label">Apellido</label>
+                            <input type="text" id="apellido" class="form-control" formControlName="apellido">
+                        </div>
+                        <div class="mb-3">
+                            <label for="gmail" class="form-label">Email</label>
+                            <input type="email" id="gmail" class="form-control" formControlName="correo">
+                        </div>
+                        <div class="mb-3">
+                            <label for="tlfo" class="form-label">Teléfono</label>
+                            <input type="number" id="tlfo" class="form-control" formControlName="telefono">
+                        </div>
+                        <div class="mb-3">
+                            <label for="mensaje" class="form-label">Mensaje</label>
+                            <textarea type="text" id="mensaje" class="form-control" formControlName="mensaje"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    </form>
+                </div>
+                <div class="card mt-4 pb-3" *ngIf="datos_formulario != null">
+                    <div class="card-body">
+                        <p class="card-text h4 b text-primary">
+                            <strong>{{datos_formulario.nombre}} {{datos_formulario.apellido}}, su mensaje fue enviado correctamente</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botón para obtener técnicos -->
+            <div class="row justify-content-center">
+                <button class="btn btn-secondary mt-4" (click)="obtenerTecnicos()">Ver técnicos disponibles</button>
+            </div>
+
+            <!-- Mostrar la lista de técnicos -->
+            <div *ngIf="tecnicos != null" class="mt-4">
+                <h3 class="text-center">Nuestros Técnicos</h3>
+                <div class="row">
+                <div *ngFor="let tecnico of tecnicos" class="col-md-3 mb-3">
+                    <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">ID: {{ tecnico.id }}</h5>
+                        <h5 class="card-title">Nombre: {{ tecnico.nombre }}</h5>
+                        <h5 class="card-title">Apellido: {{ tecnico.apellido }}</h5>
+                        <h5 class="card-title">Correo: {{ tecnico.correo }}</h5>
+                        <h5 class="card-title">Teléfono: {{ tecnico.telefono }}</h5>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
